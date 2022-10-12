@@ -1,0 +1,63 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": "container",
+    "height": 300,
+    "data": {
+        "url": "https://raw.githubusercontent.com/DylRey18/DV2ProjectFIT3179/main/Datasets/meatDFCleanTonnesLatLng.csv"
+    },
+    "title": "testing",
+    "params": 
+    [
+		{"name": "top_n", 
+         "value": 10 ,
+         "bind": {"input": "range", "min": 1, "max": 30, "step": 5, "name": "Top n :" }},
+         {
+            "name": "meat_type_selection",
+            "value": "PIG",
+            "bind":{
+                "input": "select",
+                "options": [
+                    "PIG",
+                    "SHEEP",
+                    "POULTRY",
+                    "BEEF"
+                ],
+                "labels": [
+                    "Pig",
+                    "Sheep",
+                    "Poultry",
+                    "Beef"
+                ],
+                "name": "Select Meat Type: "
+            }
+        }
+	],
+    "transform": 
+    [
+        {"filter": "datum.Meat_Type == meat_type_selection"},
+        {
+        "sort": [{"field": "Value", "order": "descending"}],	
+        "window": [{"op": "rank", "as": "ranking"}],	
+		"groupby": ["Year"]
+	        }
+
+	],
+    "encoding": {
+        "x": {"field": "Year",
+              "type": "temporal"
+        },
+
+        "y": {
+            "field": "ranking",
+            "type": "quantitative"
+        }
+    },
+    "layer": [
+        {
+            "mark": {"type": "line", "interpolate": "monotone" },
+            "encoding": {
+                "color": { "field": "Country" } 
+            }
+	    }
+    ]
+}
