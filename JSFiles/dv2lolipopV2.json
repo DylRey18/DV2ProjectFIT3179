@@ -1,0 +1,117 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 325,
+    "height": 259,
+    "title": {"text": "Worldwide meat consumption in thousand tonnes",
+              "anchor": "start"        
+    },
+    "background": "#F6F6F8",
+    "data": {
+        "url": "https://raw.githubusercontent.com/DylRey18/DataVis2Project/main/Datasets/OECDCountriesMeatConsumption.csv"
+    },
+    "params": [
+        {
+            "name": "year_selection",
+            "value": 2022,
+            "bind":{
+                "input": "range",
+                "min": 1990,
+                "max": 2029,
+                "step": 1,
+                "name": "Year: "
+            }
+        }
+    ],
+    "transform": [
+        {"filter": "datum.LOCATION == 'WLD' "},
+        {"filter": "datum.MEASURE == 'THND_TONNE' "},
+        {"filter": "datum.TIME == year_selection"}
+    ],
+    "layer": [
+        {     
+            "params": [
+                {
+                    "name": "highlight",
+                    "select": {"type": "point", "on": "mouseover"}
+                },
+                {"name": "select", "select": "point"}
+
+            ],
+            "mark" : {"type": "bar",
+                      "stroke": "black",
+                      "cursor": "pointer",
+                      "width": 10
+                    },
+            "encoding": {
+                "x":{"field":"SUBJECT","type": "nominal","axis": {"labelAngle": 0}},
+                "y":{"field":"Value","type": "quantitative"},
+                "color": {
+                    "field": "SUBJECT",
+                    "type": "nominal",
+                    "title": "Meat type",
+                    "scale": {"domain": ["BEEF","POULTRY","PIG","SHEEP"],"range": ["#0324fc","#fcd303","#fc038c","#964B00"]}
+                },
+                "fillOpacity": {
+                  "condition": {"param": "select", "value": 1},
+                  "value": 0.3
+                },
+                "strokeWidth": {
+                    "condition": [
+                      {
+                        "param": "select",
+                        "empty": false,
+                        "value": 2
+                      },
+                      {
+                        "param": "highlight",
+                        "empty": false,
+                        "value": 1
+                      }
+                    ],
+                    "value": 0
+                  },
+                  "tooltip":[
+                    {"field": "Value", "type": "quantitative","title": "Value in Thousand Tonnes",
+                    "format": ",.2f"}
+                  ]
+            }
+
+        },
+        {   
+            "params": [
+                {
+                    "name": "highlight2",
+                    "select": {"type": "point", "on": "mouseover"}
+                }
+            ],
+            "transform": [
+                {
+                  "calculate": "{'POULTRY':'🐤','BEEF': '🐄', 'PIG': '🐖', 'SHEEP': '🐏'}[datum.SUBJECT]",
+                  "as": "emoji"
+                }
+            ],
+            "mark": {"type": "text", "baseline": "middle","stroke": "black"},
+            "encoding": {
+                "x":{"field": "SUBJECT","type": "nominal"},
+                "y":{"field": "Value", "type": "quantitative"},
+                "text": {"field": "emoji", "type": "nominal"},
+                "size":{"value":40},
+                "strokeWidth": {
+                    "condition": [
+                      {
+                        "param": "highlight2",
+                        "empty": false,
+                        "value": 1
+                      }
+                    ],
+                    "value": 0
+                  },
+                  "tooltip":[
+                    {"field": "Value", "type": "quantitative","title": "Value in Thousand Tonnes",
+                    "format": ",.2f"}
+                  ]
+            }
+            
+        }
+    ]
+}
