@@ -1,0 +1,36 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {"text": "Worldwide meat consumption in last 3 decades (Thousand Tonnes)",
+              "anchor": "start"        
+    },
+    "background": "#F6F6F8",
+    "width": 170,
+    "height": 100,
+    "data": {
+        "url": "https://raw.githubusercontent.com/DylRey18/DV2ProjectFIT3179/main/Datasets/OECDCountriesMeatConsumption.csv"
+    },
+    "transform": [  
+        {"filter": "datum.LOCATION == 'WLD' "},
+        {"filter": "datum.MEASURE == 'THND_TONNE' "},
+        {"filter": "datum.TIME % 10 == 0"}
+        
+    ],
+    "mark": {"type": "arc", "innerRadius": 15},
+    "encoding": {
+            "facet": {
+                "field": "TIME",
+                "columns": 2,
+                "header": { "title": null, "titleFontSize": 20, "labelFontSize": 15, "labelAngle": 0 }
+            },
+            "theta": {"field": "Value", "type": "quantitative"},
+            "color": {"field": "SUBJECT", "type": "nominal",
+            "scale": {"domain": ["BEEF","POULTRY","PIG","SHEEP"],"range": ["#0324fc","#fcd303","#fc038c","#964B00"]}},
+            "tooltip" : [
+                {"field": "Value","format":",.2f"},
+                {"field": "TIME"}
+            ]
+
+            
+    }
+
+}
