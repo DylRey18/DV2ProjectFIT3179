@@ -1,16 +1,14 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "width": "container",
+    "background": "#F6F6F8",
     "height": 300,
     "data": {
-        "url": "https://raw.githubusercontent.com/DylRey18/DV2ProjectFIT3179/main/Datasets/meatDFCleanTonnesLatLng.csv"
+        "url": "https://raw.githubusercontent.com/DylRey18/DV2ProjectFIT3179/main/Datasets/meatDFTop10.csv"
     },
-    "title": "testing",
+    "title": "Top 10 OECD countries meat consumer",
     "params": 
     [
-		{"name": "top_n", 
-         "value": 10 ,
-         "bind": {"input": "range", "min": 1, "max": 30, "step": 5, "name": "Top n :" }},
          {
             "name": "meat_type_selection",
             "value": "PIG",
@@ -33,10 +31,13 @@
         }
 	],
     "transform": 
-    [
+    [   
+        {"calculate": "parseFloat(datum.Value)",
+         "as": "Value_converted"
+        },
         {"filter": "datum.Meat_Type == meat_type_selection"},
         {
-        "sort": [{"field": "Value", "order": "descending"}],	
+        "sort": [{"field": "Value_converted", "order": "descending"}],	
         "window": [{"op": "rank", "as": "ranking"}],	
 		"groupby": ["Year"]
 	        }
@@ -44,20 +45,42 @@
 	],
     "encoding": {
         "x": {"field": "Year",
-              "type": "temporal"
+              "timeUnit":"year",
+              "axis": {"domain": false, "ticks": false, "labelPadding": 5,"grid": false}
+              
         },
 
         "y": {
             "field": "ranking",
-            "type": "quantitative"
+            "type": "quantitative",
+            "sort": "descending",
+            "scale": {"domain": [1, 10]},
+            "title": "Ranking",
+            "axis": {"domain": false, "ticks": false, "labelPadding": 10}
         }
     },
     "layer": [
         {
             "mark": {"type": "line", "interpolate": "monotone" },
             "encoding": {
-                "color": { "field": "Country" } 
+                "color": { "field": "Country","scale": {"scheme": "tableau20"} },
+                "tooltip": [
+                    {"field": "Country"}
+                ]
+            
             }
-	    }
+            
+	    },
+        {
+            "mark": {"type": "circle"},
+            "encoding": {
+                "color": {"field": "Country","scale": {"scheme": "tableau20"}},
+                "tooltip": [
+                    {"field": "Country", "type": "nominal"},
+                    {"field": "Year", "type": "temporal","format":"%Y","title":"Year"},
+                    {"field": "Value", "type": "quantitative"}
+                ]
+            }
+        }
     ]
 }
