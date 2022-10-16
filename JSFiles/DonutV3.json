@@ -1,0 +1,49 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {"text": "Worldwide meat consumption in last 3 decades (Thousand Tonnes)",
+              "anchor": "start"        
+    },
+    "background": "#F6F6F8",
+    "data": {
+        "url": "https://raw.githubusercontent.com/DylRey18/DV2ProjectFIT3179/main/Datasets/DFDonut.csv"
+    },
+    "transform": [  
+        {"filter": "datum.LOCATION == 'WLD' "},
+        {"filter": "datum.MEASURE == 'THND_TONNE' "},
+        {"filter": "datum.TIME % 10 == 0"}
+    ],
+    "facet": {
+        "field": "TIME",
+        "header": { "title": null, "titleFontSize": 20, "labelFontSize": 14,"labelPadding":-20, "labelAngle": 0 }
+    },
+    "spec": {
+        "encoding": {
+            "theta": {"field": "Value", "type": "quantitative","stack":true},
+            "color": {"field": "SUBJECT", "type": "nominal"}
+        },
+        "layer": [
+            {
+                "mark": {"type": "arc", "innerRadius": 15,"outerRadius":70},
+                "encoding": {
+                    "color": {"field": "SUBJECT", "type": "nominal",
+                    "scale": {"domain": ["BEEF","POULTRY","PIG","SHEEP"],"range": ["#0324fc","#fcd303","#fc038c","#964B00"]}
+                    },
+                    "tooltip" : [
+                        {"field": "Value","format":",.2f"},
+                        {"field": "TIME"}
+                    ]   
+                }
+            },
+            {
+                "mark": {"type": "text", "radius": 85},
+                "encoding": {
+                "text": {"field": "Percentage", "type": "quantitative","format": ".2%"}
+    }
+            }
+        ]
+    },
+    "config": {
+        "legend": {"disable": true},
+        "facet": {"columns": 2,"spacing": -10}
+    }
+}
