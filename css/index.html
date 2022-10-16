@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+
+    <link rel="stylesheet" href="css/layout2.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@2.1.0/build/pure-min.css" integrity="sha384-yHIFVG6ClnONEA5yB5DJXfW2/KC173DIQrYoZMEtBvGzmf0PKiGyNEqe9N6BNDBH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@2.1.0/build/grids-responsive-min.css" />
+    <!-- <script src="HW9Vis.js"></script> --> 
+
+</head>
+<body>
+    
+    <div class="wrapper">
+        <div class="OuterContainer">
+            <div id="title_text">
+                Meat Consumption Worldwide Since the 90's
+                <br>Made by: Dylan Reynaldy
+            </div>
+                        
+            <div class="container2">
+                <h2>
+                    Comparison Between Meat Type
+                </h2>
+                <div class="pure-g">
+                    <div class="pure-u-1-2" style="width: 50%;">
+                        <div id="lolipop_chart"></div>
+                    </div>
+                    <div class="pure-u-1-2" style="width: 50%;">
+                        <div id="donut_chart_repeat"></div>
+                    </div>
+                    <div class="pure-u-1-2">
+                        <div id="lolipop_text">
+                            Almost anyone in this world of course consumes meat, but do you know what is the most popular type of meat?
+                            Here there will be 4 types of meat to be compared with each other that is <span style="color: #fcd303;font-weight: bold;">poultry</span>, 
+                            <span style="color: #0324fc;font-weight: bold;">beef</span>, <span style="color: #fc038c;font-weight: bold;">pig</span> and lastly <span style="color: #964B00;font-weight: bold;">sheep</span>
+                            <br><br> In this visualisations we will dive deeper into the meat consumption worldwide throughout the years.
+                            <br><br> First of all, from this lolipop chart we can see that in the year 2022 <span style="color: #fcd303;font-weight: bold;">poultry</span> is leading among all other types of meat
+                            with a total value of 133,696 thousand tonnes consumed. <span style="color: #964B00;font-weight: bold;">Sheep</span> is the lowest with only 15,965 thousand tonnes consumed.
+                            <br><br> The year slider is available to check at which year how each type of meat was consumed, but its hard to compare at a certain point of the year 
+                            so let's take a better look in our donut chart. 
+                        </div>
+                    </div>
+                    <div class="pure-u-1-2">
+                        <div id="donut_text">
+                            With the intervals of 10 years since 1990 we have seen a significance changes in the meat type consumption throughout 
+                            the years. 
+                            <br><br> In the 1990s we can see that <span style="color: #fc038c;font-weight: bold;">pig</span> was the most consumed type of meat with a total 
+                            of 41.25%.  <span style="color: #fcd303;font-weight: bold;">poultry</span> was the 3rd most consumed with 22.47%.
+                            <br><br> We can see the changes clearly that more people are consuming <span style="color: #fcd303;font-weight: bold;">poultry</span> it even surpasses <span style="color: #0324fc;font-weight: bold;">beef</span> in the year 2000 
+                            being the 2nd most consumed with 29.82%. <span style="color: #fc038c;font-weight: bold;">pig</span> still stays on the top with 39.28%
+                            <br><br> 2010 datas ranking seems to be similar with 2000, the more interesting information is in 2020.
+                            Surprisingly <span style="color: #fcd303;font-weight: bold;">poultry</span> becomes the most consumed type of meat among all of the others with
+                            total percentage of 40.51%. 
+                            
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="container2">
+                <h2>
+                    Growing Trend In Meat Consumption
+                </h2>
+                <div class="pure-g">
+                    <div class="pure-u-4-5">
+                        <div id="week10HW_Line"></div>
+                        
+                    </div>
+                    <div class="pure-u-1-5">
+                        <p id="line_text">
+                            The growing trend between these 4 types of meat is depicted from this line chart.
+                            Highlight of the visualisation is how massive people have grown to eat <span style="color: #fcd303;font-weight: bold;">poultry</span>.
+                            <br><br> <span style="color: #fcd303;font-weight: bold;">Poultry</span> consumption surpasses <span style="color: #0324fc;font-weight: bold;">beef</span> in 1996, and also later in 2016 surpasses <span style="color: #fc038c;font-weight: bold;">pig</span>
+                            being the highest of all. 
+                            <br><br> It is not quite a surprise that <span style="color: #964B00;font-weight: bold;">sheep</span> meat consumption is lowest of all
+                            <br><br> <b>Note: </b>  you can select the legends to filter out the lines
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <div class="container2">
+                <h2>
+                    OECD Countries Meat Consumption
+                </h2>
+                <div class="pure-g">
+                    <div class="pure-u-5-5">
+                        <div id="week9HW_map"></div>
+                    </div>
+                    <div class="pure-u-1-2">
+                        <div id="map_text1">
+                            Previous visualisations are all for worldwide, but how about OECD Countries? 
+                            <br><br> This map visualises the consumptions of the OECD countries throughout the world,
+                            the color represents the meat type and the sizes tells us which country consumes more as the 
+                            symbol grows bigger.
+                            <br><br> Starting from <b>America</b>, the <b>northern</b> part country that consumes the most in all type of meat is the <b>United States</b>.
+                            While in the <b> southern</b> part <b>Brazil</b> is the highest consumer.
+                            <br><br> Whereas in <b>Europe</b>, <b>Russia</b> is the top consumer for all type of meat.
+                        </div>
+                    </div>
+                    <div class="pure-u-1-2">
+                        <div id="map_text2">
+                            In <b>Asia</b>, the most consuming meat country is <b>China</b>. If compared to the other countries 
+                            China consumes way more than the other countries. In fact, China is the country that <b>consumes the most meat in the world</b> 
+                            <br><br> Lastly <b>Africa</b>'s most consuming country is countries in <b>South africa</b>, but <b>Nigeria</b> consumes 
+                            more <span style="color: #964B00;font-weight: bold;">sheep</span> meat than South africa countries which is an interesting point to note.
+                            <br><br> Year slider interactivity is given so that users can see the sizes in certain years, drop-down box is also provided
+                            to pick the type of meats.
+                            <br><br> It's quite hard to compare these tops consuming countries so let's take a look at the next visualisation that explains it.
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <div class="container2">
+                <h2>
+                    Top 10 Countries Consumer In OECD Countries
+                </h2>
+                <div class="pure-g">
+                    <div class="pure-u-4-5">
+                        <div id="bump_chart"></div>
+                        
+                    </div>
+                    <div class="pure-u-1-5">
+                        <p id="bump_text">
+                            From this visualisation, <span style="color: #F28E2B;font-weight: bold;">China</span> dominates the ranking for <span style="color: #fc038c;font-weight: bold;">pig</span> and <span style="color: #964B00;font-weight: bold;">sheep</span> consumption throughout the years.
+                            <br><br> While for <span style="color: #0324fc;font-weight: bold;">beef</span> consumption <span style="color: #499894;font-weight: bold;">United States</span>
+                            reigns on top, its also amusing to note that <span style="color: #A0CBE8;font-weight: bold;">Brazil</span> holds the 2nd spot and not <span style="color: #F28E2B;font-weight: bold;">China</span> until 2018. But still got overtaken after that
+                            <br><br> <span style="color: #fcd303;font-weight: bold;">poultry</span> consumption was throned by <span style="color: #499894;font-weight: bold;">United States</span>
+                            in the earlier years, but was dethroned by <span style="color: #F28E2B;font-weight: bold;">China</span> in 2009. Both countries has a very neck-to-neck values in <span style="color: #fcd303;font-weight: bold;">poultry</span> consumption
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+
+    
+    <script type="text/javascript">
+        
+        var spec1 = "JSFiles/HW10InteractiveLineChart.json";
+        vegaEmbed('#week10HW_Line', spec1, { "actions": false }).then(function(result) {}).catch(console.error);
+
+        var spec2 = "JSFiles/DV2Map.json";
+        vegaEmbed('#week9HW_map', spec2, { "actions": false }).then(function(result) {}).catch(console.error);
+
+        var spec3 = "JSFiles/dv2lolipopV2.json";
+        vegaEmbed('#lolipop_chart', spec3, { "actions": false }).then(function(result) {}).catch(console.error);
+
+        var spec4 = "JSFiles/DonutV3.json";
+        vegaEmbed('#donut_chart_repeat', spec4, { "actions": false }).then(function(result) {}).catch(console.error);
+        
+        var spec5 = "JSFiles/DV2BumpChart.json";
+        vegaEmbed('#bump_chart', spec5, { "actions": false }).then(function(result) {}).catch(console.error);
+        
+    
+    </script>
+
+
+</body>
+</html>
