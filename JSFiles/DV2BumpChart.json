@@ -46,6 +46,7 @@
     "encoding": {
         "x": {"field": "Year",
               "timeUnit":"year",
+              "title":"Year",
               "axis": {"domain": false, "ticks": false, "labelPadding": 5,"grid": false}
               
         },
